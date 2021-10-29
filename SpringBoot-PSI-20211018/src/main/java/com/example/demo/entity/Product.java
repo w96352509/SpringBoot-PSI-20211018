@@ -15,11 +15,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "products")
 public class Product {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
 	@Column
 	private String name;
 	
@@ -30,12 +29,12 @@ public class Product {
 	private Integer price;
 	
 	@OneToMany(mappedBy = "product")
-	@OrderBy("id ASC") //尋找照ID有序
-    private Set<OrderItem> orderItems = new LinkedHashSet<>();
+	@OrderBy("id ASC")
+	private Set<OrderItem> orderItems = new LinkedHashSet<>();
 	
 	@OneToMany(mappedBy = "product")
-	@OrderBy("id ASC") //尋找照ID有序
-    private Set<PurchaseItem> purchaseItems = new LinkedHashSet<>();
+	@OrderBy("id ASC")
+	private Set<PurchaseItem> purchaseItems = new LinkedHashSet<>();
 
 	public Long getId() {
 		return id;
@@ -84,6 +83,6 @@ public class Product {
 	public void setPurchaseItems(Set<PurchaseItem> purchaseItems) {
 		this.purchaseItems = purchaseItems;
 	}
-
+	
 	
 }

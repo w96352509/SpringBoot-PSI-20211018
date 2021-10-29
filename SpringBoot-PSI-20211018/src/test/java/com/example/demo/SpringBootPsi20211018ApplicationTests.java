@@ -8,6 +8,7 @@ class SpringBootPsi20211018ApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("Testing");
 	}
 
 }

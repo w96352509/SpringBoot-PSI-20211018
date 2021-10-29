@@ -12,20 +12,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "purchase_items")
 public class PurchaseItem {
-    @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-    
-    @Column
-    private Integer amount;
-    
-    @ManyToOne
-    @JoinColumn(name="purchase_id")
-    private Purchase purchase;
-    
-    @ManyToOne
-    @JoinColumn(name="product_id")
-    private Product product;
+	
+	@Column
+	private Integer amount;
+	
+	@JoinColumn(name = "product_id")
+	@ManyToOne
+	private Product product;
+
+	@JoinColumn(name = "purchase_id")
+	@ManyToOne
+	private Purchase purchase;
 
 	public Long getId() {
 		return id;
@@ -43,14 +43,6 @@ public class PurchaseItem {
 		this.amount = amount;
 	}
 
-	public Purchase getPurchase() {
-		return purchase;
-	}
-
-	public void setPurchase(Purchase purchase) {
-		this.purchase = purchase;
-	}
-
 	public Product getProduct() {
 		return product;
 	}
@@ -58,9 +50,15 @@ public class PurchaseItem {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-    
-    
-    
-    
+
+	public Purchase getPurchase() {
+		return purchase;
+	}
+
+	public void setPurchase(Purchase purchase) {
+		this.purchase = purchase;
+	}
+	
+	
 	
 }

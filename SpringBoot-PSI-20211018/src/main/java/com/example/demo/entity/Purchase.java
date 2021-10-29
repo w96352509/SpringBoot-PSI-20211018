@@ -28,17 +28,16 @@ public class Purchase {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	
-
 	@OneToMany(mappedBy = "purchase")
-	@OrderBy("id ASC") //尋找照ID有序
-    private Set<PurchaseItem> PurchaseItems = new LinkedHashSet<>();
+	@OrderBy("id ASC")
+	private Set<PurchaseItem> purchaseItems = new LinkedHashSet<>();
 	
+	@JoinColumn(name = "supplier_id") // 外鍵
 	@ManyToOne
-	@JoinColumn(name = "supplier_id")
 	private Supplier supplier;
 	
+	@JoinColumn(name = "employee_id") // 外鍵
 	@ManyToOne
-	@JoinColumn(name = "employee_id")
 	private Employee employee;
 
 	public Long getId() {
@@ -57,12 +56,12 @@ public class Purchase {
 		this.date = date;
 	}
 
-	public Set<PurchaseItem> getPrPurchaseItems() {
-		return PurchaseItems;
+	public Set<PurchaseItem> getPurchaseItems() {
+		return purchaseItems;
 	}
 
-	public void setPrPurchaseItems(Set<PurchaseItem> prPurchaseItems) {
-		this.PurchaseItems = prPurchaseItems;
+	public void setPurchaseItems(Set<PurchaseItem> purchaseItems) {
+		this.purchaseItems = purchaseItems;
 	}
 
 	public Supplier getSupplier() {

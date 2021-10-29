@@ -13,19 +13,18 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "supplier")
+@Table(name = "suppliers")
 public class Supplier {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
 	@Column
 	private String name;
 	
-	@OneToMany(mappedBy = "suppliers")
-	@OrderBy("id ASC") //尋找照ID有序
-    private Set<Purchase> purchases = new LinkedHashSet<>();
+	@OneToMany(mappedBy = "supplier")
+	@OrderBy("id ASC")
+	private Set<Purchase> purchases = new LinkedHashSet<>();
 
 	public Long getId() {
 		return id;
@@ -52,5 +51,4 @@ public class Supplier {
 	}
 	
 	
-
 }
