@@ -31,7 +31,7 @@ public class Purchase {
 
 	@OneToMany(mappedBy = "purchase")
 	@OrderBy("id ASC") //尋找照ID有序
-    private Set<PurchaseItem> prPurchaseItems = new LinkedHashSet<>();
+    private Set<PurchaseItem> PurchaseItems = new LinkedHashSet<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "supplier_id")
@@ -58,11 +58,11 @@ public class Purchase {
 	}
 
 	public Set<PurchaseItem> getPrPurchaseItems() {
-		return prPurchaseItems;
+		return PurchaseItems;
 	}
 
 	public void setPrPurchaseItems(Set<PurchaseItem> prPurchaseItems) {
-		this.prPurchaseItems = prPurchaseItems;
+		this.PurchaseItems = prPurchaseItems;
 	}
 
 	public Supplier getSupplier() {
