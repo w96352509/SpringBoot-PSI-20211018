@@ -45,6 +45,7 @@ public class DepartmentController {
 	}
 	 @RequestMapping("/delete/{id}")
 	 public String delete(@PathVariable("id") Long id) {
+		 //有關連性的資料不能刪
 		 departmentRepository.deleteById(id);
 		 return "redirect:/department/";
 	}
