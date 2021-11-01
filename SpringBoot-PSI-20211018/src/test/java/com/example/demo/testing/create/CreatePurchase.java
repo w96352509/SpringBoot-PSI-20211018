@@ -45,7 +45,7 @@ public class CreatePurchase {
 	void start() {
 		// 資料預備
 		Supplier s1 = supplierRepository.findById(1L).get();// 購買客戶
-		Employee e1 = employeeRepository.findById(1L).get();// 服務員工
+		Employee e2 = employeeRepository.findById(2L).get();// 服務員工
 		Product p1 = productRepository.findById(1L).get();// 購買商品
 		Product p2 = productRepository.findById(2L).get();
 
@@ -55,7 +55,7 @@ public class CreatePurchase {
 
 		// 配置採購單的關聯(看圖)
 		purchase.setSupplier(s1);
-		purchase.setEmployee(e1);
+		purchase.setEmployee(e2);
 		// --------------------
 
 		// 建立採購單細目1
