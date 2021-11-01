@@ -18,9 +18,10 @@
 			  th:object="${employee}"
 			  method="post" >
 			  <div class="form-group">
-			  	<label for="name">部門姓名：</label>
+			  	<label for="name">部門：</label>
 			  	<select class="form-control select2"
-			  	        th:field="*{department.id}" >
+			    onchange="window.location.href='./?department_id=' + this.value;"
+                th:field="*{department.id}" >
 			  	<!-- d=department -->        
 			  	<option th:each="d:${departments}" th:value="${d.id}" th:text="${d.name}"></option>
 			  	</select>
