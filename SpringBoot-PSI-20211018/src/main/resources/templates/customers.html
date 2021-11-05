@@ -27,20 +27,24 @@
 		<tr>
 		   <th>客戶序號</th>
 		   <th>客戶姓名</th>
+		   <th>下單</th>
 		   <th>編輯</th>
 		   <th>刪除</th>
 		</tr>
 		</thead>
 		<tbody>
 		 <tr th:each="customer:${customers}" >
-		 <th th:text="${customer.id}"></th>
-		 <th th:text="${customer.name}"></th>
-		 <th>
+		 <td th:text="${customer.id}"></td>
+		 <td th:text="${customer.name}"></td>
+		 <td>
+		 <a th:href="@{/order/?customer_id={cid}(cid=${customer.id})}" class="btn btn-success">下單</a>
+		 </td>
+		 <td>
 		 <a th:href="@{/customers/edit/{id}(id=${customer.id})}" class="btn btn-primary">編輯</a>
-		 </th>
-		 <th>
+		 </td>
+		 <td>
 		 <a th:href="@{/customers/delete/{id}(id=${customer.id})}" class="btn btn-danger">刪除</a>
-		 </th>
+		 </td>
 		 </tr>
 		</tbody>
 		</table>

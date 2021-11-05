@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -26,6 +28,7 @@ public class Order {
 	
 	@Column
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date;
 	
 	@JoinColumn(name = "customer_id") // 外鍵
@@ -39,6 +42,14 @@ public class Order {
 	@OneToMany(mappedBy = "order")
 	@OrderBy("id ASC")
 	private Set<OrderItem> orderItems = new LinkedHashSet<>();
+	
+	// 計算訂單總價
+		public Integer getTotal() {
+			if(orderItems.size() == 0) return 0;
+			
+			return orderItems.stream().mapToInt(oi -> oi.getAmount() * oi.getProduct().getPrice()).sum();
+		}
+
 
 	public Long getId() {
 		return id;
