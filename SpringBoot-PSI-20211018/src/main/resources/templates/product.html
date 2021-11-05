@@ -2,8 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-	<title>商品資料維護</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<title>商品資料維護</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
 	<div class="container my-2">
@@ -11,7 +12,49 @@
 		<div th:include="header :: header"></div>
 		<!-- Content -->
 		<h1>新增商品</h1>
-		
+		<form th:action="@{/product/create}" th:object="${product}"
+			method="post">
+		 <div class="form-group">
+				<label for="name">商品名稱 : </label> 
+				<input type="text" th:field="*{name}" placeholder="輸入商品名稱"  />
+		 </div>
+		 <div class="form-group">
+			    <label for="cost">數量名稱：</label> 
+			    <input type="text" th:field="*{cost}" placeholder="請輸入商品數量"  />
+			</div>
+
+			<div class="form-group">
+				<label for="price">價格名稱：</label> 
+				<input type="text" th:field="*{price}" placeholder="請輸入商品價格" />
+			</div>
+			<p />
+			<input type="submit" value="新增商品" class="btn btn-primary">
+		</form>
+		<table border="1"
+			class="table table-striped table-dark table-responsive-md">
+			<thead>
+				<tr>
+					<th>序號</th>
+					<th>商品名稱</th>
+					<th>數量</th>
+					<th>價格</th>
+					<th>修改</th>
+					<th>刪除</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="product:${products}">
+					<th th:text="${product.id}"></th>
+					<th th:text="${product.name}"></th>
+					<th th:text="${product.cost}"></th>
+					<th th:text="${product.price}"></th>
+					<th><a th:href="@{/product/edit/{id}(id=${product.id})}"
+						class="btn btn-primary">編輯</a></th>
+					<th><a th:href="@{/product/delete/{id}(id=${product.id})}"
+						class="btn btn-danger">刪除</a></th>
+				</tr>
+			</tbody>
+		</table>
 		<!-- Footer -->
 		<div th:include="footer :: footer"></div>
 	</div>

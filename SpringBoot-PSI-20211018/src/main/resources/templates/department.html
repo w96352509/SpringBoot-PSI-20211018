@@ -34,6 +34,7 @@
 					<th>序號</th>
 					<th>部門名稱</th>
 					<th>員工</th>
+					<th>員工數量</th>
 					<th>編輯</th>
 					<th>刪除</th>
 				</tr>
@@ -43,6 +44,7 @@
 					<td th:text="${department.id}"></td>
 					<td th:text="${department.name}"></td>
 					<td><a th:href="@{/employee/?department_id={id}(id=${department.id})}" class="btn btn-success">檢視員工</a></td>
+					<td th:text="${#lists.size(department.employees)}"></td>
 					<td>
 						<a th:href="@{/department/edit/{id}(id=${department.id})}" class="btn btn-primary">編輯</a>
 					</td>
