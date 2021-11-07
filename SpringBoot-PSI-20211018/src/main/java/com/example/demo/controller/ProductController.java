@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,42 +12,41 @@ import com.example.demo.repository.ProductRepository;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
-     
-	@Autowired
-	ProductRepository productRepository ;
 	
-	 @RequestMapping("/")
-	 public String index(Model model) {
-		 Product product = new Product();
-		 List<Product> products = productRepository.findAll();
-		 model.addAttribute("product", product);
-		 model.addAttribute("products", products);
-		 return "product";
+	@Autowired
+	private ProductRepository productRepository;
+	
+	@RequestMapping("/")
+	public String index(Model model) {
+		model.addAttribute("product", new Product());
+		model.addAttribute("products", productRepository.findAll());
+		return "product";
 	}
-	 @RequestMapping("/create")
-	 public String create(Product product) {
-		 productRepository.save(product);
-		 return "redirect:/product/" ;
-	 }
-	 @RequestMapping("/edit/{id}")
-	 public String edit(Model model , @PathVariable("id") Long id) {
-		 Product product = productRepository.findById(id).get();
-		 model.addAttribute("product", product);
-		 return "/product-update";
-	 }
-	 
-	 @RequestMapping("/update/{id}")
-	 public String update(Product product , @PathVariable("id") Long id ) {
-		 product.setId(id);
-		 
-		 productRepository.save(product);
-		 return "redirect:/product/";
-	 }
-	 
-	 @RequestMapping("/delete/{id}")
-	 public String delete(@PathVariable("id") Long id) {
-		 productRepository.deleteById(id);
-		 return "redirect:/product/" ;
-	 }
+	
+	@RequestMapping("/create")
+	public String create(Product product) {
+		productRepository.save(product);
+		return "redirect:/product/";
+	}
+	
+	@RequestMapping("/edit/{id}")
+	public String edit(Model model, @PathVariable("id") Long id) {
+		Product product = productRepository.findById(id).get();
+		model.addAttribute("product", product);
+		return "product-update";
+	}
+	
+	@RequestMapping("/update/{id}")
+	public String update(@PathVariable("id") Long id, Product product) {
+		productRepository.save(product);
+		return "redirect:/product/";
+	}
+	
+	@RequestMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Long id) {
+		productRepository.deleteById(id);
+		return "redirect:/product/";
+	}
+	
 	
 }

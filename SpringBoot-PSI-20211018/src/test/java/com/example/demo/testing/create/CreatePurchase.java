@@ -60,14 +60,14 @@ public class CreatePurchase {
 
 		// 建立採購單細目1
 	PurchaseItem item1 = new PurchaseItem();
-		item1.setAmount(500);
+		item1.setAmount(3000);
 		// 配置採購單細目關聯
 		item1.setPurchase(purchase);
 		item1.setProduct(p1);
 
 		// 建立採購單細目1
 		PurchaseItem item2 = new PurchaseItem();
-			item2.setAmount(700);
+			item2.setAmount(3000);
 			// 配置採購單細目關聯
 			item2.setPurchase(purchase);
 			item2.setProduct(p2);
